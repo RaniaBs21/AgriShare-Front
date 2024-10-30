@@ -1,0 +1,7 @@
+.navbar-brand {
+  margin-right: 20px; /* Ajuste la valeur selon tes besoins */
+}
+
+.navbar-toggler {
+  margin-left: auto; /* Pousse le bouton vers la droite */
+}
