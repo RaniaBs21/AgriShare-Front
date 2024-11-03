@@ -1,0 +1,28 @@
+.card {
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  font-size: 1.25em;
+  font-weight: bold;
+  background-color: lightgray;
+}
+
+.btn-outline-primary, .btn-outline-danger {
+  width: 45%;
+}
+.card-img-top {
+  height: 200px; /* Ajustez la hauteur de l'image */
+  object-fit: cover; /* Ajuste l'image pour remplir l'espace sans déformation */
+}
+.blurred-image {
+  height: 150px;
+  object-fit: cover;
+}
+

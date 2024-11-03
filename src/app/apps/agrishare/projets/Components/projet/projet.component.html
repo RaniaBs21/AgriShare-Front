@@ -13,6 +13,51 @@
     </div>
   </div>
 </div>
+<div class="spacer">
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let projet of projets" class="col-md-4 mb-4">
+        <div class="card shadow-sm border-0">
+          <!-- Image statique pour chaque projet -->
+          <img src="assets/images/prjt.jpeg" class="card-img-top blurred-image" alt="Image du projet">
+          <div class="card-header  text-green text-center">
+            <h5 class="card-title mb-0">{{ projet.nom }}</h5>
+          </div>
+
+          <div class="card-body">
+            <p class="card-text">Description: {{ projet.description }}</p>
+            <p class="card-text">
+              <small class="text-muted">
+                <strong style="color: black">Statut :</strong>
+                <span [ngClass]="{ 'text-success': projet.statut === 'TERMINE', 'text-warning': projet.statut === 'EN_COURS' }">
+                  {{ projet.statut }}
+                </span>
+              </small>
+            </p>
+            <p class="card-text">
+              <small class="text-muted">
+                <strong style="color: black">Date debut :</strong> {{ projet.dateDebut | date:'shortDate' }}
+              </small>
+
+            </p>
+            <p class="card-text">
+              <small class="text-muted">
+                <strong style="color: black">Date fin :</strong> {{ projet.dateFin | date:'shortDate' }}
+              </small>
+
+            </p>
+
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <button class="btn btn-outline-primary btn-sm">Modifier</button>
+            <button class="btn btn-outline-danger btn-sm">Supprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- ============================================================== -->
 <!-- Feature 22  -->

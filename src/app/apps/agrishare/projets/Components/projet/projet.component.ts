@@ -1,17 +1,26 @@
 import { Component } from '@angular/core';
 import {ServiceblogService} from "../../../../blog/blog-service.service";
+import {ProjetService} from "../../Services/projet.service";
+import {ProjetModel} from "../../Models/ProjetModel";
 
 @Component({
   selector: 'app-projet',
-  standalone: true,
-  imports: [],
   templateUrl: './projet.component.html',
   styleUrl: './projet.component.css'
 })
 export class ProjetComponent {
+   projets: ProjetModel[]=[];
+  constructor(public projetService:ProjetService) {
 
-  constructor(public service:ServiceblogService) {
-    this.service.showEdit=false;
+  }
+  ngOnInit(): void {
+    this.loadProjets();
+  }
 
+  loadProjets(){
+    this.projetService.getProjet().subscribe((data) => {
+      this.projets = data;
+      console.log(this.projets); // Vérifiez ce qui est chargé
+    });
   }
 }

@@ -20,6 +20,8 @@ import { FullComponent } from './layout/full/full.component';
 import { BannerComponent } from './shared/banner/banner.component';
 import { BannerNavigationComponent } from './shared/banner-navigation/banner-navigation.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import {ProjetComponent} from "./agrishare/projets/Components/projet/projet.component";
+import {BrowserModule} from "@angular/platform-browser";
 @NgModule({
   declarations: [
     AppsComponent,
@@ -32,6 +34,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     BannerComponent,
     BannerNavigationComponent, // Assurez-vous que cette ligne est bien présente
     FooterComponent,
+    ProjetComponent
   ],
   imports: [
     CommonModule,
@@ -40,6 +43,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserModule,
   ],
   providers: [],
 })
