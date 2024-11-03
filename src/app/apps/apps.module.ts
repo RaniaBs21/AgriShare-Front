@@ -20,7 +20,12 @@ import { FullComponent } from './layout/full/full.component';
 import { BannerComponent } from './shared/banner/banner.component';
 import { BannerNavigationComponent } from './shared/banner-navigation/banner-navigation.component';
 import { FooterComponent } from './shared/footer/footer.component';
-
+import {RecoltesComponent} from "./agrishare/recoltes/Components/recoltes/recoltes.component";
+import {FormationComponent} from "./agrishare/formation/Components/formation/formation.component";
+import {RessourcesComponent} from "./agrishare/ressources/Components/ressources/ressources.component";
+import {PartenariatComponent} from "./agrishare/partenariat/Components/partenariat/partenariat.component";
+import {ReclamationComponent} from "./agrishare/reclamation/Components/relamation/reclamation.component";
+import {BannerContentComponent} from "./shared/banner-content/banner-content.component";
 @NgModule({
   declarations: [
     AppsComponent,
@@ -31,9 +36,11 @@ import { FooterComponent } from './shared/footer/footer.component';
     TopContentComponent,
     FullComponent,
     BannerComponent,
-    // BannerContentComponent,
-    BannerNavigationComponent,
     FooterComponent,
+    BannerContentComponent,
+    BannerNavigationComponent
+
+
   ],
   imports: [
     CommonModule,
