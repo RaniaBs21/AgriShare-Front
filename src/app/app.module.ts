@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 // noinspection TypeScriptCheckImport
 import { NbDialogModule } from '@nebular/theme';
 import {AppsRoutingModule} from "./apps/apps-routing.module";
-//import {ProjetComponent} from "./apps/agrishare/projet/Components/projet/projet.component";
 import {RecoltesComponent} from "./apps/agrishare/recoltes/Components/recoltes/recoltes.component";
 import {FormationComponent} from "./apps/agrishare/formation/Components/formation/formation.component";
 import {RessourcesComponent} from "./apps/agrishare/ressources/Components/ressources/ressources.component";
