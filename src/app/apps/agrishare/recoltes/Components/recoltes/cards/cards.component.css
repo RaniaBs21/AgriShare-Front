@@ -1,0 +1,10 @@
+.icon-green {
+  color: green;
+}
+.btn-link i {
+  font-size: 24px; /* Ajustez la taille des icônes selon vos besoins */
+}
+
+.btn-link:hover {
+  color: #c82333; /* Couleur au survol */
+}
