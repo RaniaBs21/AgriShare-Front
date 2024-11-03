@@ -1,9 +1,8 @@
 .active {
-    color: yellow;
-  }
+  color: yellow;
+}
 
 .nav-item {
   margin-right: 15px; /* Ajuste la valeur selon tes besoins */
   color: black;
 }
-

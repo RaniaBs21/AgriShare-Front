@@ -10,7 +10,7 @@ describe('BannerNavigationComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ BannerNavigationComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -9,7 +9,7 @@ export class BannerNavigationComponent implements OnInit {
 
   logoutStatus = false;
 
-  constructor() { 
+  constructor() {
 
   }
 

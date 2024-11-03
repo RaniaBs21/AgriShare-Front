@@ -20,7 +20,6 @@ import { FullComponent } from './layout/full/full.component';
 import { BannerComponent } from './shared/banner/banner.component';
 import { BannerNavigationComponent } from './shared/banner-navigation/banner-navigation.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import {BannerContentComponent} from "./shared/banner-content/banner-content.component";
 @NgModule({
   declarations: [
     AppsComponent,
@@ -31,11 +30,8 @@ import {BannerContentComponent} from "./shared/banner-content/banner-content.com
     TopContentComponent,
     FullComponent,
     BannerComponent,
+    BannerNavigationComponent, // Assurez-vous que cette ligne est bien présente
     FooterComponent,
-    BannerContentComponent,
-    BannerNavigationComponent,
-
-
   ],
   imports: [
     CommonModule,
@@ -45,6 +41,6 @@ import {BannerContentComponent} from "./shared/banner-content/banner-content.com
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [ServiceblogService],
+  providers: [],
 })
 export class AppsModule {}
