@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {RecoltesComponent} from "./apps/agrishare/recoltes/Components/recoltes/recoltes.component";
+import {RecoltesModule} from "./apps/agrishare/recoltes/recoltes.module";
 
 
 
@@ -22,9 +24,12 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    RecoltesModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

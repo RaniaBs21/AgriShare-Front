@@ -20,6 +20,12 @@ import { FullComponent } from './layout/full/full.component';
 import { BannerComponent } from './shared/banner/banner.component';
 import { BannerNavigationComponent } from './shared/banner-navigation/banner-navigation.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import {BrowserModule} from "@angular/platform-browser";
+import {RecoltesComponent} from "./agrishare/recoltes/Components/recoltes/recoltes.component";
+import {CardsComponent} from "./agrishare/recoltes/Components/recoltes/cards/cards.component";
+import {
+  AjouterRecolteComponent
+} from "./agrishare/recoltes/Components/recoltes/ajouter-recolte/ajouter-recolte.component";
 
 @NgModule({
   declarations: [
@@ -31,7 +37,9 @@ import { FooterComponent } from './shared/footer/footer.component';
     TopContentComponent,
     FullComponent,
     BannerComponent,
-    // BannerContentComponent,
+    RecoltesComponent,
+    CardsComponent,
+    AjouterRecolteComponent,
     BannerNavigationComponent,
     FooterComponent,
   ],
@@ -40,9 +48,10 @@ import { FooterComponent } from './shared/footer/footer.component';
     AppsRoutingModule,
     NgbModule,
     FormsModule,
+    BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [ServiceblogService],
+  providers: [],
 })
 export class AppsModule {}

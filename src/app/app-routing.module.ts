@@ -1,17 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
-
 const routes: Routes = [
   {
     path: '',
-    children: [
-      // { path: '', redirectTo: '/apps', pathMatch: 'full' },
-      { path: '', loadChildren: () => import('./apps/apps.module').then(m => m.AppsModule) }
-    ]
+    loadChildren: () => import('./apps/apps.module').then(m => m.AppsModule)
   },
-
+  { path: '**', redirectTo: '' } // Redirige vers la page d'accueil pour les routes non définies
 ];
 
 @NgModule({

@@ -1,22 +1,16 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {RecoltesComponent} from "./Components/recoltes/recoltes.component";
-
-
-
+import { RecoltesComponent } from './Components/recoltes/recoltes.component';
+import { AjouterRecolteComponent } from './Components/recoltes/ajouter-recolte/ajouter-recolte.component';
 
 const routes: Routes = [
   {
     path: '',
     component: RecoltesComponent,
-    children: [
-
-      /*{ path: '',
-        component: BlogComponent
-      },*/
-
-
-    ]
+  },
+  {
+    path: 'ajoutRecolte',
+    component: AjouterRecolteComponent
   }
 ];
 
