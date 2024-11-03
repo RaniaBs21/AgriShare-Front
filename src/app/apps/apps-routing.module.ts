@@ -10,6 +10,7 @@ import {FormationComponent} from "./agrishare/formation/Components/formation/for
 import {RessourcesComponent} from "./agrishare/ressources/Components/ressources/ressources.component";
 import {PartenariatComponent} from "./agrishare/partenariat/Components/partenariat/partenariat.component";
 import {ReclamationComponent} from "./agrishare/reclamation/Components/relamation/reclamation.component";
+import {ProjetComponent} from "./agrishare/projets/Components/projet/projet.component";
 
 
 
@@ -26,9 +27,9 @@ const routes: Routes = [
       { path: '',
         component: AboutComponent
       },
-     /* { path: 'project',
+      { path: 'projets',
         component: ProjetComponent
-      },*/
+      },
       { path: 'recoltes',
         component: RecoltesComponent
       },
