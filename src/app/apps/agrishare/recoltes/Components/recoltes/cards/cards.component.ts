@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgForOf} from "@angular/common";
 import {recolte} from "../../../models/recolte.model";
 import {RecolteService} from "../../../Services/recolte.service";
@@ -9,7 +9,11 @@ import {RecolteService} from "../../../Services/recolte.service";
   styleUrl: './cards.component.css'
 })
 export class CardsComponent implements OnInit {
+  @Input() filteredRecoltes: recolte[] = [];
+
   recoltes: recolte[] = [];
+  typesCulture: string[] = [];
+  selectedTypeCulture: string = '';
   showIcons: boolean = false;
   constructor(private recolteService: RecolteService) { }
 
@@ -22,14 +26,34 @@ export class CardsComponent implements OnInit {
   getRecoltes(): void {
     this.recolteService.listerRecoltes().subscribe(
       (data: recolte[]) => {
+        console.log('Données récupérées:', data);
         this.recoltes = data;
+        this.filteredRecoltes = [...data]; // Mettre à jour la liste filtrée
       },
       (error) => {
         console.error('Erreur lors de la récupération des recoltes', error);
       }
     );
-
   }
+
+  onFilterChange(): void {
+    console.log('selectedTypeCulture:', this.selectedTypeCulture); // Vérifiez la valeur sélectionnée
+    if (this.selectedTypeCulture) {
+      this.recolteService.listerRecoltesParTypeCulture(this.selectedTypeCulture).subscribe(
+        (recoltes: recolte[]) => {
+          console.log('Récoltes filtrées:', recoltes); // Affichez les récoltes filtrées
+          this.filteredRecoltes = recoltes;
+        },
+        error => {
+          console.error('Erreur de filtrage', error);
+        }
+      );
+    } else {
+      // Si aucun type de culture n'est sélectionné, afficher toutes les récoltes
+      this.filteredRecoltes = this.recoltes;
+    }
+  }
+
   supprimerRecolte(id: string | undefined): void {
     if (!id) {
       console.error("L'ID de la récolte est indéfini.");

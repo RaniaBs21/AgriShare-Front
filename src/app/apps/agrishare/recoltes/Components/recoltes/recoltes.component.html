@@ -39,11 +39,21 @@
         <h6 class="subtitle">
           Explorez la diversité de nos récoltes, de la quantité à la saisonnalité
         </h6>
-        <button class="btn btn-primary" (click)="naviguerVersAjoutRecolte()">Ajouter une Récolte</button>
+        <div class="actions">
+          <!-- Bouton Ajouter une Récolte -->
+          <button class="btn btn-success" (click)="naviguerVersAjoutRecolte()">Ajouter une Récolte</button>
 
-      </div>
+          <!-- Filtre par type de culture -->
+          <div class="filter">
+            <label for="typeCulture">Filtrer par type de culture :</label>
+            <select id="typeCulture" [(ngModel)]="selectedTypeCulture" (change)="onFilterChange()">
+              <option value="">Tous</option>
+              <option *ngFor="let type of typesCulture" [value]="type">{{ type }}</option>
+            </select>
+          </div>
+        </div>
     </div>
-      <app-cards></app-cards>
+    <app-cards [filteredRecoltes]="filteredRecoltes"></app-cards>
   </div>
 </div>
 

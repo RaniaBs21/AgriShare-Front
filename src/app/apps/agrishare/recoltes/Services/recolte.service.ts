@@ -15,12 +15,19 @@ export class RecolteService {
     return this.http.post<recolte>(this.apiUrl, recolte);
   }
 
-  modifierRecolte(id: string, recolte: recolte): Observable<recolte> {
+  modifierRecolte(id: string, recolte:recolte): Observable<recolte> {
     return this.http.put<recolte>(`${this.apiUrl}/${id}`, recolte);
   }
 
   supprimerRecolte(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  getTypesCulture(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/types-culture`);
+  }
+  listerRecoltesParTypeCulture(typeCulture: string): Observable<recolte[]> {
+    return this.http.get<recolte[]>(`${this.apiUrl}/types-culture/${typeCulture}`);
   }
 
   listerRecoltesParCooperative(cooperativeId: string): Observable<recolte[]> {
@@ -34,4 +41,6 @@ export class RecolteService {
   obtenirRecolteParId(id: string): Observable<recolte> {
     return this.http.get<recolte>(`${this.apiUrl}/${id}`);
   }
+
+
 }

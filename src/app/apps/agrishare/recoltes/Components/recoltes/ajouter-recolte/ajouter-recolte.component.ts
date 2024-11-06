@@ -11,10 +11,28 @@ declare var bootstrap: any;
   templateUrl: './ajouter-recolte.component.html',
 })
 export class AjouterRecolteComponent {
-  recolte: recolte = {};
+  recolte: recolte = {
+    id: '',
+    typeCulture: '',
+    quantite: 0,
+    saison: '',
+    dateRecolte: new Date()
+  };
+  typeCultureOptions: string[] = [];
 
   constructor(private recolteService: RecolteService , private router: Router) {}
 
+
+  ngOnInit(): void {
+    this.recolteService.getTypesCulture().subscribe(
+      (data: string[]) => {
+        this.typeCultureOptions = data;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des types de culture', error);
+      }
+    );
+  }
   ajouterRecolte() {
     const confirmation = confirm('Êtes-vous sûr de vouloir ajouter cette récolte ?');
     if (confirmation) {

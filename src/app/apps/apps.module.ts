@@ -26,6 +26,9 @@ import {CardsComponent} from "./agrishare/recoltes/Components/recoltes/cards/car
 import {
   AjouterRecolteComponent
 } from "./agrishare/recoltes/Components/recoltes/ajouter-recolte/ajouter-recolte.component";
+import {
+  ModificationRecolteComponent
+} from "./agrishare/recoltes/Components/recoltes/modification-recolte/modification-recolte.component";
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import {
     RecoltesComponent,
     CardsComponent,
     AjouterRecolteComponent,
+    ModificationRecolteComponent,
     BannerNavigationComponent,
     FooterComponent,
   ],
