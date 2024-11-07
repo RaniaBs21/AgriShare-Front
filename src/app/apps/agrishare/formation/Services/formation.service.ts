@@ -28,6 +28,8 @@ export class FormationService {
     return this.http.get(this.url);
 }
 
-
+addFormation(formation: Formation): Observable<Formation> {
+  return this.http.post<Formation>(this.url, formation, this.httpOptions);
+}
 
 }

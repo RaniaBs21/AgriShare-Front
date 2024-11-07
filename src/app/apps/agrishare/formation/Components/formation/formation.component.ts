@@ -44,6 +44,9 @@ export class FormationComponent  implements OnInit  {
     console.log(`Participer à la formation avec l'ID: ${formationId}`);
     // Vous pouvez ici appeler un service pour gérer l'inscription à la formation
   }
+
+
+
   
 
 }
