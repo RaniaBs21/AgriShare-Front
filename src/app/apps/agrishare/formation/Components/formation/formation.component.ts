@@ -7,7 +7,6 @@ import { CommonModule } from "@angular/common";
   selector: 'app-formation',
   standalone: true,
   imports: [CommonModule],
-  
   templateUrl: './formation.component.html',
   styleUrls: ['./formation.component.css']
 })
@@ -39,5 +38,12 @@ export class FormationComponent  implements OnInit  {
       }
     );
   }
+
+  participerFormation(formationId: number) {
+    // Logique pour participer à la formation, par exemple, une redirection ou une inscription
+    console.log(`Participer à la formation avec l'ID: ${formationId}`);
+    // Vous pouvez ici appeler un service pour gérer l'inscription à la formation
+  }
+  
 
 }

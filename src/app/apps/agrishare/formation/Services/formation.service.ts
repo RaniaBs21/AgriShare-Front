@@ -28,8 +28,6 @@ export class FormationService {
     return this.http.get(this.url);
 }
 
-/*getAllFormations(): Observable<Formation[]> {
-  return this.http.get<Formation[]>(this.url);
-}*/
+
 
 }

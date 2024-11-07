@@ -5,11 +5,10 @@
   <div class="container">
     <!-- Row  -->
     <div class="row justify-content-center">
-      <!-- Column -->
       <div class="col-lg-9 col-md-6 no-trans align-self-center text-center">
-        <h1 class="title">FORMATION PAGE</h1>
+        
+        
       </div>
-      <!-- Column -->
     </div>
   </div>
 </div>
@@ -20,12 +19,13 @@
 
 <div class="spacer feature22">
   <div class="container">
-    <!--    <app-top-content></app-top-content>-->
+    <!-- Contenu supplémentaire ou optionnel -->
   </div>
 </div>
 <!-- ============================================================== -->
 <!-- End Feature 22  -->
 <!-- ============================================================== -->
+
 <!-- ============================================================== -->
 <!-- Feature 1  -->
 <!-- ============================================================== -->
@@ -34,35 +34,26 @@
     <!-- Row  -->
     <div class="row justify-content-center">
       <div class="col-md-7 text-center no-trans">
-        <h2 class="title">Available Formations</h2>
+        <h2 class="title">Nos Formations Disponibles</h2>
+        <p class="subtitle">Découvrez des formations adaptées à vos besoins pour exceller dans le secteur agricole. Nos programmes pratiques et interactifs vous fournissent les compétences nécessaires pour réussir, que vous soyez débutant ou professionnel.</p>
       </div>
     </div>
 
-    <!-- Table to display formations -->
-    <div class="row justify-content-center">
-      <div class="col-md-10">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Titre</th>
-              <th>Description</th>
-              <th>Date</th>
-              <th>Type</th>
-              <th>Categorie</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let formation of formations">
-              <td>{{ formation.id }}</td>
-              <td>{{ formation.titre }}</td>
-              <td>{{ formation.description }}</td>
-              <td>{{ formation.date }}</td>
-              <td>{{ formation.type }}</td>
-              <td>{{ formation.categorie }}</td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- Cartes pour afficher les formations -->
+    <div class="row">
+      <div *ngFor="let formation of formations" class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ formation.titre }}</h5>
+            <p class="card-text">{{ formation.description }}</p>
+            <p class="card-text">
+              <small class="text-muted">Date de début: {{ formation.date }}</small><br />
+              <small class="text-muted">Type de formation: {{ formation.type }}</small><br />
+              <small class="text-muted">Catégorie: {{ formation.categorie }}</small>
+            </p>
+            <a href="#" class="btn btn-primary" (click)="participerFormation(formation.id)">Participer à cette formation</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
