@@ -93,6 +93,43 @@
       </form>
     </div>
 
+    <!-- Formulaire pour modifier une formation existante -->
+<div *ngIf="showFormEdit" class="my-4">
+  <h3>Modifier la formation</h3>
+  <form (ngSubmit)="modifierFormation()">
+    <div class="mb-3">
+      <label for="titre" class="form-label">Titre :</label>
+      <input type="text" id="titre" class="form-control" [(ngModel)]="formation.titre" name="titre" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description :</label>
+      <input type="text" id="description" class="form-control" [(ngModel)]="formation.description" name="description" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="date" class="form-label">Date :</label>
+      <input type="date" id="date" class="form-control" [(ngModel)]="formation.date" name="date" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="type" class="form-label">Type :</label>
+      <select id="type" class="form-control" [(ngModel)]="formation.type" name="type" required>
+        <option *ngFor="let type of typeOptions" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="categorie" class="form-label">Catégorie :</label>
+      <select id="categorie" class="form-control" [(ngModel)]="formation.categorie" name="categorie" required>
+        <option *ngFor="let categorie of categorieOptions" [value]="categorie">{{ categorie }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Mettre à jour la formation</button>
+  </form>
+</div>
+
     <!-- Cartes pour afficher les formations -->
     <div class="row" *ngIf="!showForm">
       <div *ngFor="let formation of formations" class="col-md-4 mb-4">
@@ -109,7 +146,7 @@
             <!-- Boutons d'action avec icônes -->
             <div class="d-flex justify-content-between">
               <!-- Bouton Editer avec icône -->
-              <button class="btn btn-warning" (click)="editFormation(formation.id)">
+              <button class="btn btn-warning" (click)="toggleFormEdit(formation.id)">
                 <i class="fas fa-edit"></i> <!-- Icône d'édition de Font Awesome -->
               </button>
 

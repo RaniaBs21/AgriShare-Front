@@ -42,6 +42,16 @@ addFormation(formation: Formation): Observable<Formation> {
       })
     );
   }
+
+  updateFormation(id: number, formation: Formation): Observable<string> {
+    return this.http.put<string>(`${this.url}/${id}`, formation, {
+      headers: this.httpOptions.headers,
+      responseType: 'text' as 'json'
+    });
+  }
+  
+  
+
   
 
 }

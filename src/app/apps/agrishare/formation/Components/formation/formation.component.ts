@@ -1,7 +1,7 @@
 import { Router } from "@angular/router";
-import {ServiceblogService} from "../../../../blog/blog-service.service";
+import { ServiceblogService } from "../../../../blog/blog-service.service";
 import { FormationService } from '../../Services/formation.service';
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -18,6 +18,7 @@ export enum CategorieFormation {
   COMMERCIALISATION = 'Commercialisation',
   INNOVATION = 'Innovation'
 }
+
 @Component({
   selector: 'app-formation',
   standalone: true,
@@ -25,41 +26,37 @@ export enum CategorieFormation {
     CommonModule,
     FormsModule,
     ReactiveFormsModule
-
   ],
   templateUrl: './formation.component.html',
   styleUrls: ['./formation.component.css']
 })
-export class FormationComponent  implements OnInit  {
+export class FormationComponent implements OnInit {
   formations: any[] = [];
   formation: any = {
+    id: null, // Ajout de l'ID initialement à null
     titre: '',
     description: '',
     date: '',
     type: '',
     categorie: ''
   };
-
   typeOptions = Object.keys(TypeFormation);
   categorieOptions = Object.keys(CategorieFormation);
-  
 
+  showFormEdit = false;
   showForm = false;
+
   constructor(
-  public service:ServiceblogService,
-  private formationService: FormationService,
-  private router: Router,
-  ) {
-    this.service.showEdit=false;
-  }
+    public service: ServiceblogService,
+    private formationService: FormationService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    // Récupérer toutes les formations lors de l'initialisation du composant
     this.formationService.getAllFormations().subscribe(
       (data) => {
-        console.log('Données récupérées :', data); // Afficher les données reçues
         if (Array.isArray(data)) {
-          this.formations = data; // Assigner les formations récupérées si c'est un tableau
+          this.formations = data;
         } else {
           console.error('Les données récupérées ne sont pas un tableau');
         }
@@ -71,60 +68,69 @@ export class FormationComponent  implements OnInit  {
   }
 
   participerFormation(formationId: number) {
-    // Logique pour participer à la formation, par exemple, une redirection ou une inscription
     console.log(`Participer à la formation avec l'ID: ${formationId}`);
-    // Vous pouvez ici appeler un service pour gérer l'inscription à la formation
   }
 
   toggleForm() {
     this.showForm = !this.showForm;
   }
+
+  toggleFormEdit(formationId: number): void {
+    const selectedFormation = this.formations.find(f => f.id === formationId);
+    if (selectedFormation) {
+      this.formation = { ...selectedFormation }; // Charger les données de la formation dans le formulaire
+      this.showFormEdit = !this.showFormEdit; // Inverser l'état d'affichage
+      this.showForm = false; // Assurer que le formulaire d'ajout est masqué
+    }
+  }
+
   ajouterFormation() {
     this.formationService.addFormation(this.formation).subscribe(
       (newFormation) => {
         this.formations.push(newFormation);
-        this.showForm = false; // Cache le formulaire après l'ajout
-        this.formation = {}; // Réinitialise le formulaire
+        this.showForm = false;
+        this.formation = { id: null, titre: '', description: '', date: '', type: '', categorie: '' }; // Réinitialisation complète
       },
       (error) => {
         console.error('Erreur lors de l\'ajout de la formation', error);
       }
-    ); 
+    );
   }
 
-  editFormation(formationId: number) {
-    // Logique d'édition de la formation (par exemple, ouvrir un formulaire de modification)
-    console.log(`Modifier la formation avec l'ID: ${formationId}`);
+  loadFormationToEdit(formationId: number) {
+    const formationToEdit = this.formations.find(f => f.id === formationId);
+    if (formationToEdit) {
+      this.formation = { ...formationToEdit };  // Copie les données de la formation
+      this.showFormEdit = true;  // Affiche le formulaire d'édition
+    }
   }
-  
+
+  modifierFormation() {
+    if (this.formation.id) {
+      this.formationService.updateFormation(this.formation.id, this.formation).subscribe(
+        (response: string) => { // Modification pour recevoir une réponse de type string
+          console.log(response); // Message de succès ou d'erreur renvoyé par le serveur
+          const index = this.formations.findIndex(f => f.id === this.formation.id);
+          if (index !== -1) {
+            this.formations[index] = { ...this.formation }; // Mise à jour de la formation modifiée
+          }
+          this.showFormEdit = false;
+        },
+        (error) => {
+          console.error('Erreur lors de la modification de la formation', error);
+        }
+      );
+    }
+  }
+
   deleteFormation(formationId: number): void {
     this.formationService.deleteFormation(formationId).subscribe(
       response => {
-        console.log(response); // Logique après suppression
-        // Appelez la méthode pour récupérer toutes les formations après suppression
-        this.formationService.getAllFormations().subscribe(
-          (data) => {
-            if (Array.isArray(data)) {
-              this.formations = data; // Mettez à jour la liste des formations
-            } else {
-              console.error('Les données récupérées ne sont pas un tableau');
-            }
-          },
-          (error) => {
-            console.error('Erreur lors de la récupération des formations après suppression', error);
-          }
-        );
+        this.formations = this.formations.filter(f => f.id !== formationId);
       },
       error => {
         console.error('Erreur lors de la suppression de la formation', error);
       }
     );
   }
-  
-  
-
-
-
-  
-
 }
