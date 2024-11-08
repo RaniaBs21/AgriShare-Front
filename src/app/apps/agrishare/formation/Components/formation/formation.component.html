@@ -55,41 +55,58 @@
       Découvrez des formations pratiques et interactives pour exceller dans le secteur agricole, que vous soyez novice ou expérimenté.
     </p>
 
-    <!-- Formulaire d'ajout de formation -->
-    <div *ngIf="showForm" class="my-4">
-      <form (ngSubmit)="ajouterFormation()">
-        <div class="mb-3">
-          <label for="titre" class="form-label">Titre :</label>
-          <input type="text" id="titre" class="form-control" [(ngModel)]="formation.titre" name="titre" required />
-        </div>
-
-        <div class="mb-3">
-          <label for="description" class="form-label">Description :</label>
-          <input type="text" id="description" class="form-control" [(ngModel)]="formation.description" name="description" required />
-        </div>
-
-        <div class="mb-3">
-          <label for="date" class="form-label">Date :</label>
-          <input type="date" id="date" class="form-control" [(ngModel)]="formation.date" name="date" required />
-        </div>
-
-        <div class="mb-3">
-          <label for="type" class="form-label">Type :</label>
-          <select id="type" class="form-control" [(ngModel)]="formation.type" name="type" required>
-            <option *ngFor="let type of typeOptions" [value]="type">{{ type }}</option>
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label for="categorie" class="form-label">Catégorie :</label>
-          <select id="categorie" class="form-control" [(ngModel)]="formation.categorie" name="categorie" required>
-            <option *ngFor="let categorie of categorieOptions" [value]="categorie">{{ categorie }}</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn btn-success">Ajouter Formation</button>
-      </form>
+<!-- Formulaire d'ajout de formation -->
+<div *ngIf="showForm" class="my-4">
+  <form (ngSubmit)="ajouterFormation()">
+    <div class="mb-3">
+      <label for="titre" class="form-label">Titre :</label>
+      <input type="text" id="titre" class="form-control" [(ngModel)]="formation.titre" name="titre" required />
     </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description :</label>
+      <input type="text" id="description" class="form-control" [(ngModel)]="formation.description" name="description" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="date" class="form-label">Date :</label>
+      <input type="date" id="date" class="form-control" [(ngModel)]="formation.date" name="date" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="type" class="form-label">Type :</label>
+      <select id="type" class="form-control" [(ngModel)]="formation.type" name="type" required>
+        <option *ngFor="let type of typeOptions" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="categorie" class="form-label">Catégorie :</label>
+      <select id="categorie" class="form-control" [(ngModel)]="formation.categorie" name="categorie" required>
+        <option *ngFor="let categorie of categorieOptions" [value]="categorie">{{ categorie }}</option>
+      </select>
+    </div>
+
+    <!-- Message pour demander de remplir le formulaire si nécessaire -->
+    <div *ngIf="!isFormValid()" class="text-danger">
+      <p>Veuillez remplir tous les champs du formulaire !</p>
+    </div>
+
+    <!-- Bouton en fonction de la validation du formulaire -->
+     
+    <div class="d-flex justify-content-between">
+      <button 
+      type="button" 
+      class="btn" 
+      [ngClass]="isFormValid() ? 'btn-success' : 'btn-warning'" 
+      (click)="isFormValid() ? ajouterFormation() : cancelAjout()">
+      {{ isFormValid() ? 'Ajouter Formation' : 'Annuler' }}
+    </button>
+    
+    </div>
+  </form>
+</div>
+
 
     <!-- Formulaire pour modifier une formation existante -->
 <div *ngIf="showFormEdit" class="my-4">

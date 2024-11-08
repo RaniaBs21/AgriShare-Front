@@ -133,4 +133,13 @@ export class FormationComponent implements OnInit {
       }
     );
   }
+
+  isFormValid(): boolean {
+    return this.formation.titre && this.formation.description && this.formation.date && this.formation.type && this.formation.categorie;
+  }
+
+  cancelAjout(){
+    this.showForm = false;
+  }
+  
 }
