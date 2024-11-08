@@ -61,12 +61,16 @@
 
         <div class="mb-3">
           <label for="type" class="form-label">Type :</label>
-          <input type="text" id="type" class="form-control" [(ngModel)]="formation.type" name="type" required />
+          <select id="type" class="form-control" [(ngModel)]="formation.type" name="type" required>
+            <option *ngFor="let type of typeOptions" [value]="type">{{ type }}</option>
+          </select>
         </div>
 
         <div class="mb-3">
           <label for="categorie" class="form-label">Catégorie :</label>
-          <input type="text" id="categorie" class="form-control" [(ngModel)]="formation.categorie" name="categorie" required />
+          <select id="categorie" class="form-control" [(ngModel)]="formation.categorie" name="categorie" required>
+            <option *ngFor="let categorie of categorieOptions" [value]="categorie">{{ categorie }}</option>
+          </select>
         </div>
 
         <button type="submit" class="btn btn-success">Ajouter Formation</button>

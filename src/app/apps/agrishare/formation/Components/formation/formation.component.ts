@@ -4,6 +4,20 @@ import { FormationService } from '../../Services/formation.service';
 import { Component, OnInit } from '@angular/core'; 
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
+export enum TypeFormation {
+  GUIDE = 'Guide',
+  PRESENTIEL = 'Présentiel',
+  WEBINAIRE = 'Webinaire'
+}
+export enum CategorieFormation {
+  AGRICULTURE_BIO = 'Agriculture Bio',
+  GESTION_COOPERATIVE = 'Gestion de Coopérative',
+  MECANISATION = 'Mécanisation',
+  IRRIGATION = 'Irrigation',
+  COMMERCIALISATION = 'Commercialisation',
+  INNOVATION = 'Innovation'
+}
 @Component({
   selector: 'app-formation',
   standalone: true,
@@ -25,6 +39,10 @@ export class FormationComponent  implements OnInit  {
     type: '',
     categorie: ''
   };
+
+  typeOptions = Object.keys(TypeFormation);
+  categorieOptions = Object.keys(CategorieFormation);
+  
 
   showForm = false;
   constructor(
