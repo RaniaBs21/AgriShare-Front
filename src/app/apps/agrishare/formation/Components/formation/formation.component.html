@@ -42,7 +42,7 @@
 <div class="bg-light spacer feature1">
   <div class="container">
     <!-- Row pour le titre et le bouton Ajouter Formation -->
-    <div class="row justify-content-center align-items-center">
+    <div class="row justify-content-center align-items-center" *ngIf="!showForm && !showFormEdit">
       <div class="col-md-7 text-center no-trans">
         <h2 class="title d-inline-block">Nos Formations Disponibles</h2>
       </div>
@@ -51,10 +51,8 @@
       </div>
     </div>
 
-    <p class="subtitle text-center">
-      Découvrez des formations adaptées à vos besoins pour exceller dans le secteur agricole.
-      Nos programmes pratiques et interactifs vous fournissent les compétences nécessaires
-      pour réussir, que vous soyez débutant ou professionnel.
+    <p class="subtitle text-center" *ngIf="!showForm && !showFormEdit">
+      Découvrez des formations pratiques et interactives pour exceller dans le secteur agricole, que vous soyez novice ou expérimenté.
     </p>
 
     <!-- Formulaire d'ajout de formation -->
@@ -131,7 +129,7 @@
 </div>
 
     <!-- Cartes pour afficher les formations -->
-    <div class="row" *ngIf="!showForm">
+    <div class="row" *ngIf="!showForm && !showFormEdit">
       <div *ngFor="let formation of formations" class="col-md-4 mb-4">
         <div class="card">
           <div class="card-body">
