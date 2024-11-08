@@ -57,6 +57,16 @@
 
 <!-- Formulaire d'ajout de formation -->
 <div *ngIf="showForm" class="my-4">
+  <div class="form-header d-flex justify-content-between align-items-center">
+    <h3>Ajouter formation</h3>
+    <button 
+    type="button" 
+    class="btn-close" 
+    aria-label="Close" 
+    (click)="cancelAjout()">
+    <!-- L'icône "X" est incluse par défaut avec `btn-close` -->
+  </button>
+  </div>
   <form (ngSubmit)="ajouterFormation()">
     <div class="mb-3">
       <label for="titre" class="form-label">Titre :</label>
@@ -110,7 +120,16 @@
 
     <!-- Formulaire pour modifier une formation existante -->
 <div *ngIf="showFormEdit" class="my-4">
-  <h3>Modifier la formation</h3>
+  <div class="form-header d-flex justify-content-between align-items-center">
+  <h3>Modifier formation</h3>
+  <button 
+  type="button" 
+  class="btn-close" 
+  aria-label="Close" 
+  (click)="cancelModif()">
+  <!-- L'icône "X" est incluse par défaut avec `btn-close` -->
+</button>
+</div>
   <form (ngSubmit)="modifierFormation()">
     <div class="mb-3">
       <label for="titre" class="form-label">Titre :</label>
