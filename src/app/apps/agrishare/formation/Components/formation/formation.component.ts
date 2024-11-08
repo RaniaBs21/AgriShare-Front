@@ -90,10 +90,38 @@ export class FormationComponent  implements OnInit  {
         console.error('Erreur lors de l\'ajout de la formation', error);
       }
     ); 
-
-
-
   }
+
+  editFormation(formationId: number) {
+    // Logique d'édition de la formation (par exemple, ouvrir un formulaire de modification)
+    console.log(`Modifier la formation avec l'ID: ${formationId}`);
+  }
+  
+  deleteFormation(formationId: number): void {
+    this.formationService.deleteFormation(formationId).subscribe(
+      response => {
+        console.log(response); // Logique après suppression
+        // Appelez la méthode pour récupérer toutes les formations après suppression
+        this.formationService.getAllFormations().subscribe(
+          (data) => {
+            if (Array.isArray(data)) {
+              this.formations = data; // Mettez à jour la liste des formations
+            } else {
+              console.error('Les données récupérées ne sont pas un tableau');
+            }
+          },
+          (error) => {
+            console.error('Erreur lors de la récupération des formations après suppression', error);
+          }
+        );
+      },
+      error => {
+        console.error('Erreur lors de la suppression de la formation', error);
+      }
+    );
+  }
+  
+  
 
 
 

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 export interface Formation {
   id: number;
@@ -31,5 +32,16 @@ export class FormationService {
 addFormation(formation: Formation): Observable<Formation> {
   return this.http.post<Formation>(this.url, formation, this.httpOptions);
 }
+
+  // Méthode pour supprimer une formation
+  deleteFormation(id: number): Observable<string> {
+    return this.http.delete<string>(`${this.url}/${id}`, { responseType: 'text' as 'json' }).pipe(
+      catchError(error => {
+        console.error('Erreur lors de la suppression de la formation', error);
+        throw error;
+      })
+    );
+  }
+  
 
 }
