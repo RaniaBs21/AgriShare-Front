@@ -1,13 +1,8 @@
-<div
-  class="banner-innerpage"
-  style="background-image: url(assets/images/landingpage/agric.jpg)"
->
+<div class="banner-innerpage" style="background-image: url(assets/images/landingpage/agric.jpg)">
   <div class="container">
     <!-- Row  -->
     <div class="row justify-content-center">
       <div class="col-lg-9 col-md-6 no-trans align-self-center text-center">
-        
-        
       </div>
     </div>
   </div>
@@ -16,7 +11,6 @@
 <!-- ============================================================== -->
 <!-- Feature 22  -->
 <!-- ============================================================== -->
-
 <div class="spacer feature22">
   <div class="container">
     <!-- Contenu supplémentaire ou optionnel -->
@@ -31,16 +25,56 @@
 <!-- ============================================================== -->
 <div class="bg-light spacer feature1">
   <div class="container">
-    <!-- Row  -->
-    <div class="row justify-content-center">
+    <!-- Row pour le titre et le bouton Ajouter Formation -->
+    <div class="row justify-content-center align-items-center">
       <div class="col-md-7 text-center no-trans">
-        <h2 class="title">Nos Formations Disponibles</h2>
-        <p class="subtitle">Découvrez des formations adaptées à vos besoins pour exceller dans le secteur agricole. Nos programmes pratiques et interactifs vous fournissent les compétences nécessaires pour réussir, que vous soyez débutant ou professionnel.</p>
+        <h2 class="title d-inline-block">Nos Formations Disponibles</h2>
+      </div>
+      <div class="col-md-3 text-end">
+        <button class="btn btn-primary" (click)="toggleForm()">Ajouter Formation</button>
       </div>
     </div>
 
+    <p class="subtitle text-center">
+      Découvrez des formations adaptées à vos besoins pour exceller dans le secteur agricole.
+      Nos programmes pratiques et interactifs vous fournissent les compétences nécessaires
+      pour réussir, que vous soyez débutant ou professionnel.
+    </p>
+
+    <!-- Formulaire d'ajout de formation -->
+    <div *ngIf="showForm" class="my-4">
+      <form (ngSubmit)="ajouterFormation()">
+        <div class="mb-3">
+          <label for="titre" class="form-label">Titre :</label>
+          <input type="text" id="titre" class="form-control" [(ngModel)]="formation.titre" name="titre" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description :</label>
+          <input type="text" id="description" class="form-control" [(ngModel)]="formation.description" name="description" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="date" class="form-label">Date :</label>
+          <input type="date" id="date" class="form-control" [(ngModel)]="formation.date" name="date" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="type" class="form-label">Type :</label>
+          <input type="text" id="type" class="form-control" [(ngModel)]="formation.type" name="type" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="categorie" class="form-label">Catégorie :</label>
+          <input type="text" id="categorie" class="form-control" [(ngModel)]="formation.categorie" name="categorie" required />
+        </div>
+
+        <button type="submit" class="btn btn-success">Ajouter Formation</button>
+      </form>
+    </div>
+
     <!-- Cartes pour afficher les formations -->
-    <div class="row">
+    <div class="row" *ngIf="!showForm">
       <div *ngFor="let formation of formations" class="col-md-4 mb-4">
         <div class="card">
           <div class="card-body">
