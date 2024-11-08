@@ -45,6 +45,8 @@ export class FormationComponent implements OnInit {
 
   showFormEdit = false;
   showForm = false;
+  initialFormation: any;
+
 
   constructor(
     public service: ServiceblogService,
@@ -79,6 +81,7 @@ export class FormationComponent implements OnInit {
     const selectedFormation = this.formations.find(f => f.id === formationId);
     if (selectedFormation) {
       this.formation = { ...selectedFormation }; // Charger les données de la formation dans le formulaire
+      this.initialFormation = { ...selectedFormation };
       this.showFormEdit = !this.showFormEdit; // Inverser l'état d'affichage
       this.showForm = false; // Assurer que le formulaire d'ajout est masqué
     }
@@ -138,8 +141,17 @@ export class FormationComponent implements OnInit {
     return this.formation.titre && this.formation.description && this.formation.date && this.formation.type && this.formation.categorie;
   }
 
+  isFormEditModified(): boolean {
+    return JSON.stringify(this.formation) !== JSON.stringify(this.initialFormation);
+  }
+  
+
   cancelAjout(){
     this.showForm = false;
+  }
+
+  cancelModif(){
+    this.showFormEdit = false;
   }
   
 }

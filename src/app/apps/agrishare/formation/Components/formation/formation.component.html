@@ -140,8 +140,15 @@
         <option *ngFor="let categorie of categorieOptions" [value]="categorie">{{ categorie }}</option>
       </select>
     </div>
-
-    <button type="submit" class="btn btn-primary">Mettre à jour la formation</button>
+    <div class="d-flex justify-content-between">
+      <button 
+      type="button" 
+      class="btn" 
+      [ngClass]="!isFormEditModified() ? 'btn-warning' : 'btn-success'" 
+      (click)="!isFormEditModified() ? cancelModif() : modifierFormation()">
+      {{ !isFormEditModified() ? 'Annuler' : 'Mettre à jour' }}
+    </button>
+</div>
   </form>
 </div>
 
