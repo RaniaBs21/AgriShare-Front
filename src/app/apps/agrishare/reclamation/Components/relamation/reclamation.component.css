@@ -1,0 +1,68 @@
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .modern-card {
+    background: url('/assets/images/background.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: filter 0.3s ease;
+  }
+  
+  .modern-card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    filter: brightness(0.7); /* Réduire la luminosité de l'image sur hover */
+  }
+
+  
+ 
+  
+  .description {
+    font-size: 18px; /* Augmente la taille du texte */
+    font-weight: bold; /* Met le texte en gras */
+    color: #010101; /* Garde la couleur blanche pour contraster sur le fond */
+    margin: 15px 0; /* Espacement supérieur et inférieur pour aérer */
+    line-height: 1.4; /* Améliore la lisibilité en augmentant l'espacement entre les lignes */
+  }
+  
+  
+  .date {
+    color: #141212;
+    font-size: 14px;
+  }
+  
+  .card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Dans votre fichier CSS (par exemple styles.css ou dans le style de votre composant) */
+.btn-info-gradiant {
+    background-color: #4CAF50; /* Couleur de fond du bouton (vert) */
+    color: white; /* Couleur du texte */
+    border: none; /* Supprimer la bordure */
+  }
+  
+  .btn-info-gradiant:hover {
+    background-color: #45a049; /* Couleur du bouton au survol (plus foncé) */
+    color: white;
+  }
+  

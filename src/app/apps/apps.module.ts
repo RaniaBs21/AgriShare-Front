@@ -34,6 +34,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     // BannerContentComponent,
     BannerNavigationComponent,
     FooterComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -42,6 +43,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CommonModule,
   ],
   providers: [ServiceblogService],
 })
