@@ -1,0 +1,93 @@
+<!-- update-ressource.component.html -->
+<div
+        class="banner-innerpage"
+        style="background-image: url(assets/images/landingpage/agric.jpg)">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-md-6 no-trans align-self-center text-center">
+                <h1 class="title">UPDATE RESSOURCE</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="spacer feature22">
+    <div class="container">
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow p-4">
+                <h2 class="text-center mb-4">Modifier la Ressource</h2>
+                <form (ngSubmit)="updateRessource()" class="form-style">
+                    <div class="form-group mb-3">
+                        <label for="type" class="form-label">Type de Ressource</label>
+                        <select
+                                id="type"
+                                [(ngModel)]="ressource.type"
+                                name="type"
+                                class="form-control"
+                                required>
+                            <option *ngFor="let type of typeOptions" [value]="type">{{ type }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="nom" class="form-label">Nom</label>
+                        <input
+                                type="text"
+                                id="nom"
+                                [(ngModel)]="ressource.nom"
+                                name="nom"
+                                class="form-control"
+                                required
+                        />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="quantite" class="form-label">Quantité</label>
+                        <input
+                                type="number"
+                                id="quantite"
+                                [(ngModel)]="ressource.quantite"
+                                name="quantite"
+                                class="form-control"
+                                required/>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="unite" class="form-label">Unité</label>
+                        <select
+                                id="unite"
+                                [(ngModel)]="ressource.unite"
+                                name="unite"
+                                class="form-control"
+                                required
+                        >
+                            <option *ngFor="let unite of uniteOptions" [value]="unite">{{ unite }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <div class="form-check">
+                            <input
+                                    id="disponibilite"
+                                    type="checkbox"
+                                    [(ngModel)]="ressource.disponibilite"
+                                    name="disponibilite"
+                                    class="form-check-input"
+                            />
+                            <label for="disponibilite" class="form-check-label">Disponible</label>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-success">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
