@@ -1,0 +1,88 @@
+<div
+  class="banner-innerpage"
+  style="background-image: url(assets/images/landingpage/agric.jpg)"
+>
+  <div class="container">
+    <!-- Row  -->
+    <div class="row justify-content-center">
+      <!-- Column -->
+      <div class="col-lg-9 col-md-6 no-trans align-self-center text-center">
+        <h1 class="title">RECOLTES PAGE</h1>
+      </div>
+      <!-- Column -->
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- Feature 22  -->
+<!-- ============================================================== -->
+
+<div class="spacer feature22">
+  <div class="container">
+    <!--    <app-top-content></app-top-content>-->
+  </div>
+</div>
+
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow p-4">
+        <h2 class="text-center mb-4">Modifier une Récolte</h2>
+        <form (ngSubmit)="onUpdate()" class="form-style">
+          <div class="form-group mb-3">
+            <label for="typeCulture" class="form-label">Type de Culture</label>
+            <select
+              id="typeCulture"
+              [(ngModel)]="recolte.typeCulture"
+              name="typeCulture"
+              class="form-control"
+              required
+            >
+              <option *ngFor="let type of typeCultureOptions" [value]="type">
+                {{ type }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group mb-3">
+            <label for="quantite" class="form-label">Quantité</label>
+            <input
+              type="number"
+              id="quantite"
+              [(ngModel)]="recolte.quantite"
+              name="quantite"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="saison" class="form-label">Saison</label>
+            <input
+              type="text"
+              id="saison"
+              [(ngModel)]="recolte.saison"
+              name="saison"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="dateRecolte" class="form-label">Date de Récolte</label>
+            <input
+              type="date"
+              id="dateRecolte"
+              [(ngModel)]="recolte.dateRecolte"
+              name="dateRecolte"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Mettre à Jour la Récolte</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

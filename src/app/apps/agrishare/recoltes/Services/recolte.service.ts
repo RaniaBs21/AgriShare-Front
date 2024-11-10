@@ -37,7 +37,6 @@ export class RecolteService {
   obtenirRecolteParId(id: string): Observable<recolte> {
     return this.http.get<recolte>(`${this.apiUrl}/${id}`);
   }
-  // Nouvelle méthode pour obtenir la somme des quantités par type de culture
   obtenirQuantiteTotaleParTypeCulture(typeCulture: string): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/quantite-total/${typeCulture}`);
   }

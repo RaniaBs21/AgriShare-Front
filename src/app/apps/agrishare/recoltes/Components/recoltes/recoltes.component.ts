@@ -10,10 +10,10 @@ import { Router } from "@angular/router";
 })
 export class RecoltesComponent implements OnInit {
   recoltes: recolte[] = [];
-  filteredRecoltes: recolte[] = []; // Ajoutez cette ligne
+  filteredRecoltes: recolte[] = [];
   typesCulture: string[] = [];
   selectedTypeCulture: string = '';
-  totalQuantite: number | null = null; // Nouvelle propriété pour la somme
+  totalQuantite: number | null = null;
 
   constructor(private recolteService: RecolteService, private router: Router) { }
 
@@ -21,13 +21,13 @@ export class RecoltesComponent implements OnInit {
     this.recolteService.listerRecoltes().subscribe(
       (recoltes: recolte[]) => {
         this.recoltes = recoltes;
-        this.filteredRecoltes = recoltes; // Initialisation avec toutes les récoltes
+        this.filteredRecoltes = recoltes;
       },
       error => {
         console.error('Erreur lors de la récupération des récoltes', error);
       }
     );
-    this.getTypesCulture();  // Ajoutez cette ligne pour récupérer les types de culture
+    this.getTypesCulture();
   }
 
   getTypesCulture(): void {
@@ -45,7 +45,7 @@ export class RecoltesComponent implements OnInit {
       (data: recolte[]) => {
         console.log('Données récupérées:', data);
         this.recoltes = data;
-        this.filteredRecoltes = [...data]; // Mettre à jour la liste filtrée
+        this.filteredRecoltes = [...data];
       },
       (error) => {
         console.error('Erreur lors de la récupération des recoltes', error);
@@ -80,7 +80,6 @@ export class RecoltesComponent implements OnInit {
           console.log('Récoltes filtrées:', recoltes);
           this.filteredRecoltes = recoltes;
 
-          // Appeler la méthode pour obtenir la somme des quantités
           this.recolteService.obtenirQuantiteTotaleParTypeCulture(this.selectedTypeCulture).subscribe(
             (sum: number) => {
               this.totalQuantite = sum;
@@ -98,7 +97,6 @@ export class RecoltesComponent implements OnInit {
         }
       );
     } else {
-      // Si aucun type de culture n'est sélectionné, afficher toutes les récoltes et réinitialiser la somme
       this.filteredRecoltes = this.recoltes;
       this.totalQuantite = null;
     }
