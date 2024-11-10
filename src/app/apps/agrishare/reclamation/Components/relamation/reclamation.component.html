@@ -22,8 +22,13 @@
     <div class="container p-4">
       <!-- Cards Grid -->
       <div class="cards-grid">
-        <!-- Single Card -->
-        <div class="modern-card" *ngFor="let reclamation of reclamations">
+        <!-- Single Card with click event -->
+        <div 
+          class="modern-card" 
+          *ngFor="let reclamation of reclamations" 
+          (click)="getReclamationById(reclamation.idReclamation)"
+          style="cursor: pointer;"
+        >
           <div class="card-content">
             <p class="description">{{ reclamation.description }}</p>
             <p class="date">{{ reclamation.dateSoumission | date:'dd/MM/yyyy' }}</p>
@@ -36,6 +41,7 @@
   </div>
 </div>
 
+
 <!-- ============================================================== -->
 <!-- End Feature 22 -->
 <!-- ============================================================== -->
@@ -47,6 +53,7 @@
   <div class="container">
     <div class="row justify-content-center m-b-30">
       <div class="col-md-7 text-center no-trans">
+    
         <h2 class="title">
           Êtes-vous satisfait de nos services ? Soumettez une réclamation maintenant !
         </h2>
@@ -58,13 +65,14 @@
         <p class="additional-text">
           Vous pouvez soumettre vos réclamations ici. Cliquez sur le bouton ci-dessous pour commencer.
         </p>
-        <a
-          class="btn btn-md btn-arrow m-t-20"
-          routerLink="addReclamation"
-          style="background-color: #4CAF50; color: white; border: none;"
-        >
-          <span>Ajouter une Réclamation <i class="ti-arrow-right"></i></span>
-        </a>
+        <a 
+        class="btn btn-md btn-arrow m-t-20"
+        [routerLink]="['/addReclamation']"
+        style="background-color: #4CAF50; color: white; border: none;"
+      >
+        <span>Ajouter une Réclamation <i class="ti-arrow-right"></i></span>
+      </a>
+   
       </div>
     </div>
   </div>

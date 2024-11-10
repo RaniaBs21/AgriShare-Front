@@ -45,8 +45,9 @@ const routes: Routes = [
       },
 
       
-      { path: 'reclamation', component: ReclamationComponent},
+      { path: 'reclamation', component: ReclamationComponent },
       { path: 'addReclamation', component: AjoutReclamationComponent },
+
 
     ]
   }

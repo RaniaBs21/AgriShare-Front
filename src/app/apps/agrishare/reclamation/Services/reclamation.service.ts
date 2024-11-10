@@ -29,14 +29,22 @@ export class ReclamationService {
     return this.http.get<Reclamation>(`${this.apiUrl}/getReclamationById/${id}`);
   }
 
+
+  
   // Ajouter une nouvelle réclamation avec idMembre statique
   addReclamation(reclamation: Reclamation): Observable<Reclamation> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
     // Assignation de idMembre à 1 (valeur statique)
     reclamation.idMembre = 1;
 
     // Appel à l'API backend pour ajouter la réclamation
     return this.http.post<Reclamation>(`${this.apiUrl}/addReclamation`, reclamation);
   }
+
+
+
 
   // Mettre à jour une réclamation
   updateReclamation(id: number, reclamation: Reclamation): Observable<Reclamation> {

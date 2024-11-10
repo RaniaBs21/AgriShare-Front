@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ReclamationService, Reclamation } from "src/app/apps/agrishare/reclamation/Services/reclamation.service";  // Importez le service
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+import { filter } from 'rxjs/operators';
+import { RouterModule } from '@angular/router'; // Ajoutez cet import
 
 @Component({
   selector: 'app-reclamation',
   standalone: true,
   templateUrl: './reclamation.component.html',
   styleUrls: ['./reclamation.component.css'],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    RouterModule  // Ajoutez RouterModule ici
+  ],
   
 })
 export class ReclamationComponent implements OnInit {
@@ -18,23 +22,33 @@ export class ReclamationComponent implements OnInit {
   reclamations: Reclamation[] = [];
 
   // Réclamation à ajouter
-  newReclamation: Reclamation = {
-    idReclamation: 0,
-    description: '',
-    dateSoumission: '',
-    idMembre: 1 // idMembre statique
-  };
+  // newReclamation: Reclamation = {
+  //   idReclamation: 0,
+  //   description: '',
+  //   dateSoumission: '',
+  //   idMembre: 1 // idMembre statique
+  // };
 
   // Variable pour afficher/masquer le formulaire
-  isFormVisible: boolean = false;
+ // isFormVisible: boolean = false;
 
   constructor(
     private reclamationService: ReclamationService,
     private router: Router
-  ) {}
+  ) {
+         // Surveiller les événements de navigation
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      console.log('URL actuelle:', event.url);
+    });
+    
+  }
 
   ngOnInit(): void {
     this.getAllReclamations(); // Appeler la méthode pour récupérer les réclamations
+    console.log('Route actuelle:', this.router.url);
+
   }
 
   // Méthode pour obtenir toutes les réclamations
@@ -51,27 +65,14 @@ export class ReclamationComponent implements OnInit {
   }
 
 
-
-   // Méthode pour ajouter une réclamation
-   addReclamation(): void {
-    this.reclamationService.addReclamation(this.newReclamation).subscribe({
-      next: (newReclamation) => {
-        this.reclamations.push(newReclamation);
-        this.newReclamation = { idReclamation: 0, description: '', dateSoumission: '', idMembre: 1 }; // Réinitialiser
-        this.isFormVisible = false;  // Masquer le formulaire après soumission
-      },
-      error: (err) => {
-        console.error('Erreur lors de l\'ajout de la réclamation', err);
-      }
-    });
+  navigateToAddReclamation() {
+    console.log('Tentative de navigation vers addReclamation');
+    this.router.navigate(['addReclamation'])
+      .then(() => console.log('Navigation réussie vers /addReclamation'))
+      .catch(err => console.error('Erreur de navigation:', err));
   }
-
-   // Fonction pour afficher ou masquer le formulaire
-   toggleForm(): void {
-    this.isFormVisible = !this.isFormVisible;
-  }
-
   
+
 
   // Méthode pour supprimer une réclamation
   deleteReclamation(id: number): void {
