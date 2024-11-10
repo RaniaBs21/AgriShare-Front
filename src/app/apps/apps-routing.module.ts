@@ -29,9 +29,7 @@ const routes: Routes = [
       { path: 'project',
         component: ProjetComponent
       },
-      { path: 'recoltes',
-        component: RecoltesComponent
-      },
+      { path: 'recoltes', loadChildren: () => import('./agrishare/recoltes/recoltes.module').then(m => m.RecoltesModule) },
       { path: 'formation',
         component: FormationComponent
       },

@@ -1,0 +1,34 @@
+<div *ngIf="filteredRecoltes.length === 0">
+  <p>Aucune récolte disponible pour ce type de culture.</p>
+</div>
+
+<div class="row m-t-40" *ngIf="filteredRecoltes.length > 0">
+  <div class="col-md-4 wrap-feature1-box" *ngFor="let recolte of filteredRecoltes">
+    <div class="card card-shadow" data-aos="fade-right" data-aos-duration="1200">
+      <div class="card-body p-40 text-center">
+        <div class="icon-space display-5">
+          <i class="fas fa-seedling icon-green"></i>
+        </div>
+        <h5 class="font-medium">{{ recolte.typeCulture }}</h5>
+        <p class="m-t-20">
+          Quantité : {{ recolte.quantite }} Kg<br>
+          Saison : {{ recolte.saison }}<br>
+          Date de récolte : {{ recolte.dateRecolte | date: 'dd/MM/yyyy' }}<br>
+        </p>
+        <div class="d-flex justify-content-center mt-3">
+          <button (click)="toggleIcons()" class="btn btn-link" style="padding: 0; border: none;">
+            <i [ngClass]="{'fas fa-chevron-down': !showIcons, 'fas fa-chevron-up': showIcons}"></i>
+          </button>
+        </div>
+        <div class="d-flex justify-content-center mt-3" *ngIf="showIcons">
+          <button class="btn btn-link" style="padding: 0; border: none;" [routerLink]="['/recoltes/modifier', recolte.id]">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button (click)="supprimerRecolte(recolte.id)" class="btn btn-link" style="padding: 0; border: none; color: red;">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
