@@ -1,0 +1,45 @@
+<!-- update-ressource.component.html -->
+<div
+        class="banner-innerpage"
+        style="background-image: url(assets/images/landingpage/agric.jpg)">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-md-6 no-trans align-self-center text-center">
+                <h1 class="title">UPDATE RESSOURCE</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="spacer feature22">
+    <div class="container">
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow p-4">
+                <h2 class="text-center mb-4">Modifier la Ressource</h2>
+                <form (ngSubmit)="updateEquipment()">
+                    <div>
+                        <label for="type">Type de Equipement</label>
+                        <select id="type" [(ngModel)]="equipment.type" name="type">
+                            <option *ngFor="let option of typeOptions" [value]="option">{{ option }}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="nomEquipement">Nom de l'équipement</label>
+                        <input type="text" id="nomEquipement" [(ngModel)]="equipment.nomEquipement" name="nomEquipement">
+                    </div>
+                    <div>
+                        <label for="purchaseDate">Date d'achat</label>
+                        <input type="date" id="purchaseDate" [(ngModel)]="equipment.purchaseDate" name="purchaseDate">
+                    </div>
+                    <button type="submit">Save Changes</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
