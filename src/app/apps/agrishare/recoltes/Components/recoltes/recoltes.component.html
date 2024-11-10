@@ -52,7 +52,10 @@
             </select>
           </div>
           <div *ngIf="totalQuantite !== null" class="quantite-totale mt-3">
-            <h6>Quantité totale pour "{{ selectedTypeCulture }}" : {{ totalQuantite }}</h6>
+            <h6>
+              Quantité totale pour "{{ selectedTypeCulture }}" :
+              <span style="color: #4CAF50; font-weight: bold;">{{ totalQuantite }} kg</span>
+            </h6>
           </div>
         </div>
     </div>
