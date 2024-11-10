@@ -21,7 +21,7 @@ import {AppsModule} from "../../apps.module";
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppsModule,
+    AppsModule
   ],
   providers: [],
 })

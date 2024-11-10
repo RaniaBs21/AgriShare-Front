@@ -11,7 +11,7 @@ import {EquipmentModel} from "../Model/EquipementModel";
 export class RessourcesService {
 
 
-readonly API_URL = 'http://localhost:8095';
+readonly API_URL = 'http://localhost:8099';
   constructor(private httpClient: HttpClient
   ) { }
 
@@ -21,9 +21,12 @@ readonly API_URL = 'http://localhost:8095';
   getRessources(): Observable<RessourceModel[]> {
     return this.httpClient.get<RessourceModel[]>(`${this.API_URL}/getRessource`);
   }
-  updateRessource ( id: string, demo: RessourceModel): Observable<RessourceModel> {
+  getRessourceById(id:string): Observable<RessourceModel> {
+    return this.httpClient.get<RessourceModel>(`${this.API_URL}/getRessource/${id}`);
+  }
+  updateRessource ( id: string, ressouce: RessourceModel): Observable<RessourceModel> {
     const url = `${this.API_URL}/updateRessource/${id}`;
-    return this.httpClient.put<RessourceModel>( url, demo );
+    return this.httpClient.put<RessourceModel>( url, ressouce );
   }
   deleteRessources(id: string) {
     return this.httpClient.delete<void>(`${this.API_URL}/deleteRessource/${id}`);
@@ -36,9 +39,12 @@ readonly API_URL = 'http://localhost:8095';
   getEquipments(): Observable<EquipmentModel[]> {
     return this.httpClient.get<EquipmentModel[]>(`${this.API_URL}/getEquipement`);
   }
-  updateEquipement ( id: string| undefined, demo: EquipmentModel): Observable<EquipmentModel> {
+  getEquipementById(id:string): Observable<EquipmentModel> {
+    return this.httpClient.get<EquipmentModel>(`${this.API_URL}/getEquipement/${id}`);
+  }
+  updateEquipement ( id: string| undefined, equipement: EquipmentModel): Observable<EquipmentModel> {
     const url = `${this.API_URL}/updateEquipement/${id}`;
-    return this.httpClient.put<EquipmentModel>( url, demo );
+    return this.httpClient.put<EquipmentModel>( url, equipement );
   }
   deleteEquipement(id: string) {
     return this.httpClient.delete<void>(`${this.API_URL}/deleteEquipement/${id}`);

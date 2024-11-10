@@ -7,14 +7,7 @@
     disponibilite?:boolean;
 
 
-     constructor(id: string, nom: string, type: TypeRessource, quantite: number, unite: Unite, disponibilite: boolean) {
-         this.id = id;
-         this.nom = nom;
-         this.type = type;
-         this.quantite = quantite;
-         this.unite = unite;
-         this.disponibilite = disponibilite;
-     }
+
  }
 export enum TypeRessource {
      SEED = 'SEED',

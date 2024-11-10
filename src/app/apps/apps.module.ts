@@ -26,9 +26,12 @@ import {
 import {RessourcesComponent} from "./agrishare/ressources/Components/ressources/ressources.component";
 import {BrowserModule} from "@angular/platform-browser";
 import {BannerContentComponent} from "./shared/banner-content/banner-content.component";
-import {CustomModalComponent} from "./agrishare/ressources/Components/ressources/custom-modal/custom-modal.component";
 import {UpdateEquipementComponent
 } from "./agrishare/ressources/Components/ressources/update-equipement/update-equipement.component";
+import {RouterModule} from "@angular/router";
+import {
+  UpdateRessourceComponent
+} from "./agrishare/ressources/Components/ressources/update-ressource/update-ressource.component";
 
 @NgModule({
   declarations: [
@@ -42,8 +45,8 @@ import {UpdateEquipementComponent
     BannerComponent,
     RessourcesComponent,
     AddRessourceComponent,
-    CustomModalComponent,
     UpdateEquipementComponent,
+    UpdateRessourceComponent,
     BannerContentComponent,
     BannerNavigationComponent,
     FooterComponent,
@@ -56,8 +59,11 @@ import {UpdateEquipementComponent
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
+
   ],
   providers: [ServiceblogService],
 
+  exports: [
+  ]
 })
 export class AppsModule {}

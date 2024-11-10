@@ -8,90 +8,109 @@ import {DatePipe} from "@angular/common";
 import {Router} from "@angular/router";
 import {NbDialogService} from "@nebular/theme";
 import {UpdateEquipementComponent} from "./update-equipement/update-equipement.component";
+import {UpdateRessourceComponent} from "./update-ressource/update-ressource.component";
 
 @Component({
-  selector: 'app-ressources',
-  templateUrl: './ressources.component.html',
-  styleUrl: './ressources.component.css'
+    selector: 'app-ressources',
+    templateUrl: './ressources.component.html',
+    styleUrl: './ressources.component.css'
 })
-export class RessourcesComponent implements OnInit{
+export class RessourcesComponent implements OnInit {
 
-  constructor(public service:ServiceblogService,
-              private resourceService: RessourcesService,private router: Router) {
+    constructor(public service: ServiceblogService,
+                private resourceService: RessourcesService, private router: Router) {
 
-  }
-  equipments! : EquipmentModel[];
-  resources!: RessourceModel[];
-  showIcons = false;
-  toggleIcons() {
-    this.showIcons = !this.showIcons;
-  }
-  ngOnInit(): void {
-    this.loadEquipments();
-    this.loadResources();
-  }
-  onAddEquipment() {
-    this.router.navigate(['ressources/ajoutEquipement']);
-  }
-  onAddRessource() {
-    this.router.navigate(['ressources/ajoutRessource']);
-  }
-
-
-
-
-
-  loadEquipments() {
-    this.resourceService.getEquipments().subscribe((data) => {
-      this.equipments = data;
-    });
-  }
-  loadResources() {
-    this.resourceService.getRessources().subscribe((data) => {
-      console.log(data); // Ajoutez cette ligne pour voir les données dans la console
-      this.resources = data;
-    });
-  }
-
-  deleteEquipment(id: string | undefined): void {
-    if (!id) {
-      console.error("L'ID de la ressource est indéfini.");
-      return;
     }
-    const confirmation = confirm("Êtes-vous sûr de vouloir supprimer cet équipement ?");
 
-    if (confirmation) {
-      // Si l'utilisateur confirme, procéder à la suppression
-      this.resourceService.deleteEquipement(id).subscribe(() => {
-        this.loadEquipments(); // Recharger la liste des équipements après suppression
-        console.log(`Équipement avec l'ID ${id} supprimé.`);
-      }, error => {
-        console.error("Erreur lors de la suppression de l'équipement : ", error);
-      });
-    } else {
-      console.log("Suppression annulée.");
+    equipments!: EquipmentModel[];
+    resources!: RessourceModel[];
+    showIcons = false;
+    showModal: boolean = false;
+    selectedRessource!: RessourceModel;
+
+    toggleIcons() {
+        this.showIcons = !this.showIcons;
     }
-  }
- deleteRessource(id: string | undefined): void {
-    if (!id) {
-      console.error("L'ID de la ressource est indéfini.");
-      return;
+
+    openModal(ressource: RessourceModel): void {
+        this.selectedRessource = {...ressource}; // Create a copy to avoid direct mutations
+        this.showModal = true;
     }
-    const confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette ressource ?");
 
-    if (confirmation) {
-      // Si l'utilisateur confirme, procéder à la suppression
-      this.resourceService.deleteRessources(id).subscribe(() => {
-        this.loadResources(); // Recharger la liste des équipements après suppression
-        console.log(`Ressource avec l'ID ${id} supprimé.`);
-      }, error => {
-        console.error("Erreur lors de la suppression de ressource : ", error);
-      });
-    } else {
-      console.log("Suppression annulée.");
+    ngOnInit(): void {
+        this.loadEquipments();
+        this.loadResources();
     }
-  }
+
+    onAddEquipment() {
+        this.router.navigate(['ressources/ajoutEquipement']);
+    }
+
+    onAddRessource() {
+        this.router.navigate(['ressources/ajoutRessource']);
+    }
+
+    UpdateEquipement(id: string | undefined) {
+        this.router.navigate([`/ressources/updateEquipement/${id}`]);
+    }
+
+    updateRessource(id: string | undefined) {
+        this.router.navigate([`/ressources/updateRessource/${id}`]);
+    }
+
+    loadEquipments() {
+        this.resourceService.getEquipments().subscribe((data) => {
+            this.equipments = data;
+        });
+    }
+
+    loadResources() {
+        this.resourceService.getRessources().subscribe((data) => {
+            console.log(data); // Ajoutez cette ligne pour voir les données dans la console
+            this.resources = data;
+        });
+    }
+
+    deleteEquipment(id: string | undefined): void {
+        if (!id) {
+            console.error("L'ID de la ressource est indéfini.");
+            return;
+        }
+        const confirmation = confirm("Êtes-vous sûr de vouloir supprimer cet équipement ?");
+
+        if (confirmation) {
+            // Si l'utilisateur confirme, procéder à la suppression
+            this.resourceService.deleteEquipement(id).subscribe(() => {
+                this.loadEquipments(); // Recharger la liste des équipements après suppression
+                console.log(`Équipement avec l'ID ${id} supprimé.`);
+            }, error => {
+                console.error("Erreur lors de la suppression de l'équipement : ", error);
+            });
+        } else {
+            console.log("Suppression annulée.");
+        }
+    }
+
+    deleteRessource(id: string | undefined): void {
+        if (!id) {
+            console.error("L'ID de la ressource est indéfini.");
+            return;
+        }
+        const confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette ressource ?");
+
+        if (confirmation) {
+            // Si l'utilisateur confirme, procéder à la suppression
+            this.resourceService.deleteRessources(id).subscribe(() => {
+                this.loadResources(); // Recharger la liste des équipements après suppression
+                console.log(`Ressource avec l'ID ${id} supprimé.`);
+            }, error => {
+                console.error("Erreur lors de la suppression de ressource : ", error);
+            });
+        } else {
+            console.log("Suppression annulée.");
+        }
+    }
 
 
-
+    protected readonly UpdateRessourceComponent = UpdateRessourceComponent;
 }
