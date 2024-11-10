@@ -29,50 +29,47 @@
 <!-- ============================================================== -->
 <!-- Feature 1  -->
 <!-- ============================================================== -->
-<div class="bg-light spacer feature1">
-  <div class="container">
-    <!-- Row  -->
-    <div class="row justify-content-center">
-      <div class="col-md-7 text-center no-trans">
-        <h2 class="title">Create beautiful Websites in Record Time</h2>
-        <h6 class="subtitle">
-          You can relay on our amazing features list and also our customer
-          services will be great experience for you without doubt and in no-time
-        </h6>
-      </div>
-    </div>
-    <!--    <app-relay-on></app-relay-on>-->
-  </div>
-</div>
-<!-- ============================================================== -->
+
 <!-- End Feature 1  -->
 <!-- ============================================================== -->
 
 <!-- ============================================================== -->
 <!-- Call to action -->
 <!-- ============================================================== -->
-<div class="spacer">
-  <div class="container">
-    <div class="row justify-content-center m-b-30">
-      <div class="col-md-7 text-center no-trans">
-        <h2 class="title">
-          Are you happy with what we offer? Grab your WrapKit Angular Blog Copy
-          Now
-        </h2>
-        <h6 class="subtitle">
-          Yeah ! Its pretty cool about what you are offering and i starterd to
-          feel in love with your Amazing UI Kit. I want it Yea!
-        </h6>
-        <a
-          class="btn btn-info-gradiant btn-md btn-arrow m-t-20"
-          data-toggle="collapse"
-          href="#"
-        ><span>View Details <i class="ti-arrow-right"></i></span
-        ></a>
+<section id="partenariats" class="partenariats">
+  <div class="container" data-aos="fade-up">
+
+
+    <div class="row" data-aos="zoom-in" data-aos-delay="100">
+      <div *ngIf="!loading && partenariats.length > 0" class="col-lg-12">
+        <div class="row">
+          <div *ngFor="let partenariat of partenariats" class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="partenaire-item">
+              <div class="partenaire-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h3 class="partenaire-name" style="color: #559b0b;">{{ partenariat.nom }} {{ partenariat.prenom }}</h3>
+                  <p class="email">{{ partenariat.email }}</p>
+                </div>
+                <div class="partenaire-details">
+                  <p class="phone"  style="color: black;">Téléphone: {{ partenariat.numeroTelephone }}</p>
+                  <!-- Affichage de l'image si elle existe -->
+                  <div *ngIf="partenariat.image">
+                    <img [src]="'data:image/png;base64,' + partenariat.image" alt="Image du partenaire" width="170" height="170" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!loading && partenariats.length === 0" class="no-partners">
+        <p>Aucun partenariat trouvé.</p>
       </div>
     </div>
   </div>
-</div>
+</section>
+
 <!-- ============================================================== -->
 <!-- End Call to action -->
 <!-- ============================================================== -->
