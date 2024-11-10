@@ -1,15 +1,25 @@
-<div
-  class="banner-innerpage"
-  style="background-image: url(assets/images/landingpage/agric.jpg)"
->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plateforme de Formations Agricoles</title>
+
+  <!-- Lien vers Font Awesome pour les icônes -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <!-- Lien vers Bootstrap CSS (si ce n'est pas déjà inclus ailleurs) -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Bannière avec l'image de fond -->
+<div class="banner-innerpage" style="background-image: url(assets/images/landingpage/agric.jpg)">
   <div class="container">
     <!-- Row  -->
     <div class="row justify-content-center">
-      <!-- Column -->
       <div class="col-lg-9 col-md-6 no-trans align-self-center text-center">
-        <h1 class="title">FORMATION PAGE</h1>
       </div>
-      <!-- Column -->
     </div>
   </div>
 </div>
@@ -17,62 +27,191 @@
 <!-- ============================================================== -->
 <!-- Feature 22  -->
 <!-- ============================================================== -->
-
 <div class="spacer feature22">
   <div class="container">
-    <!--    <app-top-content></app-top-content>-->
+    <!-- Contenu supplémentaire ou optionnel -->
   </div>
 </div>
 <!-- ============================================================== -->
 <!-- End Feature 22  -->
 <!-- ============================================================== -->
+
 <!-- ============================================================== -->
 <!-- Feature 1  -->
 <!-- ============================================================== -->
 <div class="bg-light spacer feature1">
   <div class="container">
-    <!-- Row  -->
-    <div class="row justify-content-center">
+    <!-- Row pour le titre et le bouton Ajouter Formation -->
+    <div class="row justify-content-center align-items-center" *ngIf="!showForm && !showFormEdit">
       <div class="col-md-7 text-center no-trans">
-        <h2 class="title">Create beautiful Websites in Record Time</h2>
-        <h6 class="subtitle">
-          You can relay on our amazing features list and also our customer
-          services will be great experience for you without doubt and in no-time
-        </h6>
+        <h2 class="title d-inline-block">Nos Formations Disponibles</h2>
+      </div>
+      <div class="col-md-3 text-end">
+        <button class="btn btn-primary" (click)="toggleForm()">Ajouter Formation</button>
       </div>
     </div>
-    <!--    <app-relay-on></app-relay-on>-->
+
+    <p class="subtitle text-center" *ngIf="!showForm && !showFormEdit">
+      Découvrez des formations pratiques et interactives pour exceller dans le secteur agricole, que vous soyez novice ou expérimenté.
+    </p>
+
+    <!-- Formulaire d'ajout de formation -->
+    <div *ngIf="showForm" class="my-4">
+      <div class="form-header d-flex justify-content-between align-items-center">
+        <h3>Ajouter formation</h3>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="cancelAjout()">
+          <!-- L'icône "X" est incluse par défaut avec `btn-close` -->
+        </button>
+      </div>
+      <form (ngSubmit)="ajouterFormation()">
+        <div class="mb-3">
+          <label for="titre" class="form-label">Titre :</label>
+          <input type="text" id="titre" class="form-control" [(ngModel)]="formation.titre" name="titre" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description :</label>
+          <input type="text" id="description" class="form-control" [(ngModel)]="formation.description" name="description" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="date" class="form-label">Date :</label>
+          <input type="date" id="date" class="form-control" [(ngModel)]="formation.date" name="date" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="type" class="form-label">Type :</label>
+          <select id="type" class="form-control" [(ngModel)]="formation.type" name="type" required>
+            <option *ngFor="let type of typeOptions" [value]="type">{{ type }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="categorie" class="form-label">Catégorie :</label>
+          <select id="categorie" class="form-control" [(ngModel)]="formation.categorie" name="categorie" required>
+            <option *ngFor="let categorie of categorieOptions" [value]="categorie">{{ categorie }}</option>
+          </select>
+        </div>
+
+        <!-- Message pour demander de remplir le formulaire si nécessaire -->
+        <div *ngIf="!isFormValid()" class="text-danger">
+          <p>Veuillez remplir tous les champs du formulaire !</p>
+        </div>
+
+        <!-- Bouton en fonction de la validation du formulaire -->
+
+        <div class="d-flex justify-content-between">
+          <button
+            type="button"
+            class="btn"
+            [ngClass]="isFormValid() ? 'btn-success' : 'btn-warning'"
+            (click)="isFormValid() ? ajouterFormation() : cancelAjout()">
+            {{ isFormValid() ? 'Ajouter Formation' : 'Annuler' }}
+          </button>
+
+        </div>
+      </form>
+    </div>
+
+
+    <!-- Formulaire pour modifier une formation existante -->
+    <div *ngIf="showFormEdit" class="my-4">
+      <div class="form-header d-flex justify-content-between align-items-center">
+        <h3>Modifier formation</h3>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="cancelModif()">
+          <!-- L'icône "X" est incluse par défaut avec `btn-close` -->
+        </button>
+      </div>
+      <form (ngSubmit)="modifierFormation()">
+        <div class="mb-3">
+          <label for="titre" class="form-label">Titre :</label>
+          <input type="text"  class="form-control" [(ngModel)]="formation.titre" name="titre" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description :</label>
+          <input type="text" id="description" class="form-control" [(ngModel)]="formation.description" name="description" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="date" class="form-label">Date :</label>
+          <input type="date" id="date" class="form-control" [(ngModel)]="formation.date" name="date" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="type" class="form-label">Type :</label>
+          <select id="type" class="form-control" [(ngModel)]="formation.type" name="type" required>
+            <option *ngFor="let type of typeOptions" [value]="type">{{ type }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="categorie" class="form-label">Catégorie :</label>
+          <select id="categorie" class="form-control" [(ngModel)]="formation.categorie" name="categorie" required>
+            <option *ngFor="let categorie of categorieOptions" [value]="categorie">{{ categorie }}</option>
+          </select>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button
+            type="button"
+            class="btn"
+            [ngClass]="!isFormEditModified() ? 'btn-warning' : 'btn-success'"
+            (click)="!isFormEditModified() ? cancelModif() : modifierFormation()">
+            {{ !isFormEditModified() ? 'Annuler' : 'Mettre à jour' }}
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Cartes pour afficher les formations -->
+    <div class="row" *ngIf="!showForm && !showFormEdit">
+      <div *ngFor="let formation of formations" class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ formation.titre }}</h5>
+            <p class="card-text">{{ formation.description }}</p>
+            <p class="card-text">
+              <small class="text-muted">Date de début: {{ formation.date }}</small><br />
+              <small class="text-muted">Type de formation: {{ formation.type }}</small><br />
+              <small class="text-muted">Catégorie: {{ formation.categorie }}</small>
+            </p>
+
+            <!-- Boutons d'action avec icônes -->
+            <div class="d-flex justify-content-between">
+              <!-- Bouton Editer avec icône -->
+              <button class="btn btn-warning" (click)="toggleFormEdit(formation.id)">
+                <i class="fas fa-edit"></i> <!-- Icône d'édition de Font Awesome -->
+              </button>
+
+              <!-- Bouton Supprimer avec icône -->
+              <button class="btn btn-danger" (click)="deleteFormation(formation.id)">
+                <i class="fas fa-trash-alt"></i> <!-- Icône de suppression de Font Awesome -->
+              </button>
+            </div>
+
+            <!-- Bouton Participer à la formation -->
+            <a href="#" class="btn btn-primary" (click)="participerFormation(formation.id)">Participer à cette formation</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <!-- ============================================================== -->
 <!-- End Feature 1  -->
 <!-- ============================================================== -->
 
-<!-- ============================================================== -->
-<!-- Call to action -->
-<!-- ============================================================== -->
-<div class="spacer">
-  <div class="container">
-    <div class="row justify-content-center m-b-30">
-      <div class="col-md-7 text-center no-trans">
-        <h2 class="title">
-          Are you happy with what we offer? Grab your WrapKit Angular Blog Copy
-          Now
-        </h2>
-        <h6 class="subtitle">
-          Yeah ! Its pretty cool about what you are offering and i starterd to
-          feel in love with your Amazing UI Kit. I want it Yea!
-        </h6>
-        <a
-          class="btn btn-info-gradiant btn-md btn-arrow m-t-20"
-          data-toggle="collapse"
-          href="#"
-        ><span>View Details <i class="ti-arrow-right"></i></span
-        ></a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ============================================================== -->
-<!-- End Call to action -->
-<!-- ============================================================== -->
+<!-- Scripts de Bootstrap (ajoutez ici si nécessaire) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
