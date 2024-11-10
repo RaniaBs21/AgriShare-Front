@@ -51,6 +51,9 @@
               <option *ngFor="let type of typesCulture" [value]="type">{{ type }}</option>
             </select>
           </div>
+          <div *ngIf="totalQuantite !== null" class="quantite-totale mt-3">
+            <h6>Quantité totale pour "{{ selectedTypeCulture }}" : {{ totalQuantite }}</h6>
+          </div>
         </div>
     </div>
     <app-cards [filteredRecoltes]="filteredRecoltes"></app-cards>

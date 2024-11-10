@@ -13,6 +13,7 @@ export class RecoltesComponent implements OnInit {
   filteredRecoltes: recolte[] = []; // Ajoutez cette ligne
   typesCulture: string[] = [];
   selectedTypeCulture: string = '';
+  totalQuantite: number | null = null; // Nouvelle propriété pour la somme
 
   constructor(private recolteService: RecolteService, private router: Router) { }
 
@@ -53,24 +54,55 @@ export class RecoltesComponent implements OnInit {
   }
 
 
+  // onFilterChange(): void {
+  //   console.log('selectedTypeCulture:', this.selectedTypeCulture); // Vérifiez la valeur sélectionnée
+  //   if (this.selectedTypeCulture) {
+  //     this.recolteService.listerRecoltesParTypeCulture(this.selectedTypeCulture).subscribe(
+  //       (recoltes: recolte[]) => {
+  //         console.log('Récoltes filtrées:', recoltes); // Affichez les récoltes filtrées
+  //         this.filteredRecoltes = recoltes;
+  //       },
+  //       error => {
+  //         console.error('Erreur de filtrage', error);
+  //       }
+  //     );
+  //   } else {
+  //     // Si aucun type de culture n'est sélectionné, afficher toutes les récoltes
+  //     this.filteredRecoltes = this.recoltes;
+  //   }
+  // }
+
   onFilterChange(): void {
-    console.log('selectedTypeCulture:', this.selectedTypeCulture); // Vérifiez la valeur sélectionnée
+    console.log('selectedTypeCulture:', this.selectedTypeCulture);
     if (this.selectedTypeCulture) {
       this.recolteService.listerRecoltesParTypeCulture(this.selectedTypeCulture).subscribe(
         (recoltes: recolte[]) => {
-          console.log('Récoltes filtrées:', recoltes); // Affichez les récoltes filtrées
+          console.log('Récoltes filtrées:', recoltes);
           this.filteredRecoltes = recoltes;
+
+          // Appeler la méthode pour obtenir la somme des quantités
+          this.recolteService.obtenirQuantiteTotaleParTypeCulture(this.selectedTypeCulture).subscribe(
+            (sum: number) => {
+              this.totalQuantite = sum;
+            },
+            error => {
+              console.error('Erreur lors de la récupération de la somme des quantités', error);
+              this.totalQuantite = null;
+            }
+          );
         },
         error => {
           console.error('Erreur de filtrage', error);
+          this.filteredRecoltes = [];
+          this.totalQuantite = null;
         }
       );
     } else {
-      // Si aucun type de culture n'est sélectionné, afficher toutes les récoltes
+      // Si aucun type de culture n'est sélectionné, afficher toutes les récoltes et réinitialiser la somme
       this.filteredRecoltes = this.recoltes;
+      this.totalQuantite = null;
     }
   }
-
   naviguerVersAjoutRecolte() {
     this.router.navigate(['recoltes/ajoutRecolte']);
   }

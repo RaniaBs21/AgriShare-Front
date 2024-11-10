@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class RecolteService {
-  private apiUrl = 'http://localhost:8094/api/recoltes';
+  private apiUrl = 'http://localhost:8094/recolte';
 
   constructor(private http: HttpClient) { }
 
@@ -30,10 +30,6 @@ export class RecolteService {
     return this.http.get<recolte[]>(`${this.apiUrl}/types-culture/${typeCulture}`);
   }
 
-  listerRecoltesParCooperative(cooperativeId: string): Observable<recolte[]> {
-    return this.http.get<recolte[]>(`${this.apiUrl}/cooperative/${cooperativeId}`);
-  }
-
   listerRecoltes(): Observable<recolte[]> {
     return this.http.get<recolte[]>(`${this.apiUrl}/AllRecoltes`);
   }
@@ -41,6 +37,9 @@ export class RecolteService {
   obtenirRecolteParId(id: string): Observable<recolte> {
     return this.http.get<recolte>(`${this.apiUrl}/${id}`);
   }
-
+  // Nouvelle méthode pour obtenir la somme des quantités par type de culture
+  obtenirQuantiteTotaleParTypeCulture(typeCulture: string): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/quantite-total/${typeCulture}`);
+  }
 
 }
