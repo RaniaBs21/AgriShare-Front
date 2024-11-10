@@ -36,8 +36,8 @@ const routes: Routes = [
         component: FormationComponent
       },
       { path: 'ressources',
-        component: RessourcesComponent
-      },
+        loadChildren: () => import('./agrishare/ressources/ressources.module').then(m => m.RessourcesModule) },
+
       { path: 'partenariat',
         component: PartenariatComponent
       },

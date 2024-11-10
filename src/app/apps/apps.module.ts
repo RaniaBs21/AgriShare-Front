@@ -20,6 +20,15 @@ import { FullComponent } from './layout/full/full.component';
 import { BannerComponent } from './shared/banner/banner.component';
 import { BannerNavigationComponent } from './shared/banner-navigation/banner-navigation.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import {
+  AddRessourceComponent
+} from "./agrishare/ressources/Components/ressources/add-ressource/add-ressource.component";
+import {RessourcesComponent} from "./agrishare/ressources/Components/ressources/ressources.component";
+import {BrowserModule} from "@angular/platform-browser";
+import {BannerContentComponent} from "./shared/banner-content/banner-content.component";
+import {CustomModalComponent} from "./agrishare/ressources/Components/ressources/custom-modal/custom-modal.component";
+import {UpdateEquipementComponent
+} from "./agrishare/ressources/Components/ressources/update-equipement/update-equipement.component";
 
 @NgModule({
   declarations: [
@@ -31,7 +40,11 @@ import { FooterComponent } from './shared/footer/footer.component';
     TopContentComponent,
     FullComponent,
     BannerComponent,
-    // BannerContentComponent,
+    RessourcesComponent,
+    AddRessourceComponent,
+    CustomModalComponent,
+    UpdateEquipementComponent,
+    BannerContentComponent,
     BannerNavigationComponent,
     FooterComponent,
   ],
@@ -40,9 +53,11 @@ import { FooterComponent } from './shared/footer/footer.component';
     AppsRoutingModule,
     NgbModule,
     FormsModule,
+    BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
   providers: [ServiceblogService],
+
 })
 export class AppsModule {}
