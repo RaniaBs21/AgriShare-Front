@@ -14,6 +14,8 @@
   </div>
 </div>
 <div class="spacer">
+  <!-- Bouton Ajouter une Récolte -->
+
   <div class="container">
     <div class="row">
       <div *ngFor="let projet of projets" class="col-md-4 mb-4">
@@ -50,7 +52,9 @@
           </div>
           <div class="card-footer d-flex justify-content-between">
             <button class="btn btn-outline-primary btn-sm">Modifier</button>
-            <button class="btn btn-outline-danger btn-sm">Supprimer</button>
+            <button class="btn btn-outline-danger btn-sm" *ngIf="projet.id" (click)="onDeleteProjet(projet.id)">
+              Supprimer
+            </button>
           </div>
         </div>
       </div>

@@ -7,12 +7,17 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class ProjetService {
-  readonly API_URL = 'http://localhost:8093';
+  readonly API_URL = 'http://localhost:8096/projet';
 
   constructor(private httpClient: HttpClient,) { }
 
-  getProjet(): Observable<ProjetModel[]> {
-    return this.httpClient.get<ProjetModel[]>(`${this.API_URL}/projet/all`);
+  ajouterProjet(projet: ProjetModel): Observable<ProjetModel> {
+    return this.httpClient.post<ProjetModel>(`${this.API_URL}/add`, projet);
   }
-
+  getProjet(): Observable<ProjetModel[]> {
+    return this.httpClient.get<ProjetModel[]>(`${this.API_URL}/all`);
+  }
+  deleteProjet(id: string) {
+    return this.httpClient.delete<void>(`${this.API_URL}/delete/${id}`);
+  }
 }

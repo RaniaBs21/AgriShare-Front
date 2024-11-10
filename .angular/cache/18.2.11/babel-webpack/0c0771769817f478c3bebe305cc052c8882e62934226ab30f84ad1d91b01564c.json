@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var Statut = /*#__PURE__*/function (Statut) {\n  Statut[\"EN_COURS\"] = \"EN_COURS\";\n  Statut[\"TERMINE\"] = \"TERMINE\";\n  return Statut;\n}(Statut || {});\nexport class ProjetModel {}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
