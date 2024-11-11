@@ -1,0 +1,58 @@
+<div class="banner-innerpage" style="background-image: url(assets/images/landingpage/agric.jpg); background-size: cover; background-position: center; padding: 100px 0;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9 col-md-6 align-self-center text-center">
+        <h1 class="title font-weight-bold text-white">AJOUT RECLAMATION</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow border-0">
+        <div class="card-body p-5">
+          <form #reclamationForm="ngForm" (ngSubmit)="addReclamation()">
+            <div class="form-group mb-4">
+              <label for="description" class="font-weight-bold">Description de la réclamation</label>
+              <textarea
+                id="description"
+                name="description"
+                class="form-control border-dark rounded-3"
+                rows="6"
+                [(ngModel)]="newReclamation.description"
+                required
+              ></textarea>
+              <div *ngIf="errorMessage" class="text-danger mt-2">{{ errorMessage }}</div>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="date" class="font-weight-bold">Date de soumission</label>
+              <input
+                type="date"
+                id="date"
+                name="dateSoumission"
+                class="form-control border-dark rounded-3"
+                [(ngModel)]="newReclamation.dateSoumission"
+                required
+              >
+            </div>
+
+            <div class="text-center">
+              <button
+                type="submit"
+                class="btn btn-success btn-lg px-5"
+                [disabled]="isSubmitting || !reclamationForm.valid"
+              >
+                <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                {{ isSubmitting ? 'Envoi en cours...' : 'Soumettre la réclamation' }}
+              </button>
+            </div>
+          </form>
+          <div *ngIf="showSuccess" class="alert alert-success mt-4">Réclamation ajoutée avec succès !</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

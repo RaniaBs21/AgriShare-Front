@@ -13,6 +13,9 @@ import {RessourcesComponent} from "./agrishare/ressources/Components/ressources/
 import {PartenariatComponent} from "./agrishare/partenariat/Components/partenariat/partenariat.component";
 import {ReclamationComponent} from "./agrishare/reclamation/Components/relamation/reclamation.component";
 import {ProjetComponent} from "./agrishare/projets/Components/projet/projet.component";
+import {
+  AjoutReclamationComponent
+} from "./agrishare/reclamation/Components/ajout-reclamation/ajout-reclamation.component";
 
 
 
@@ -41,6 +44,9 @@ const routes: Routes = [
       },
       { path: 'reclamation',
         component: ReclamationComponent
+      },
+      { path: 'addReclamation',
+        component: AjoutReclamationComponent
       },
 
 

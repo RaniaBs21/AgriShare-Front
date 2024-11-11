@@ -1,0 +1,13 @@
+.text-bold {
+  font-weight: bold;
+}
+
+.btn-green {
+  background-color: #28a745; /* Couleur verte */
+  color: white;
+  border: none;
+}
+
+.btn-green:hover {
+  background-color: #218838; /* Couleur verte plus foncée au survol */
+}
