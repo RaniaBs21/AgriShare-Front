@@ -1,0 +1,78 @@
+
+<div
+  class="banner-innerpage"
+  style="background-image: url(assets/images/landingpage/agric.jpg)"
+>
+  <div class="container">
+    <!-- Row  -->
+    <div class="row justify-content-center">
+      <!-- Column -->
+      <div class="col-lg-9 col-md-6 no-trans align-self-center text-center">
+        <h1 class="title">RESSOURCE PAGE</h1>
+      </div>
+      <!-- Column -->
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- Feature 22  -->
+<!-- ============================================================== -->
+
+<div class="spacer feature22">
+  <div class="container">
+    <!--    <app-top-content></app-top-content>-->
+  </div>
+</div>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow p-4">
+        <h2 class="text-center mb-4">Ajouter un Équipement</h2>
+        <form (ngSubmit)="ajouterEquipement()" class="form-style">
+          <div class="form-group mb-3">
+            <label for="nomEquipement" class="form-label">Nom de l'Équipement</label>
+            <input
+              type="text"
+              id="nomEquipement"
+              [(ngModel)]="equipement.nomEquipement"
+              name="nameEquipement"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="type" class="form-label">Type d'Équipement</label>
+            <select
+              id="type"
+              [(ngModel)]="equipement.type"
+              name="type"
+              class="form-control"
+              required>
+              <option *ngFor="let type of typeOptions" [value]="type">
+                {{ type }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="purchaseDate" class="form-label">Date d'Achat</label>
+            <input
+              type="date"
+              id="purchaseDate"
+              [(ngModel)]="equipement.purchaseDate"
+              name="purchaseDate"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success">Ajouter Équipement</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+/* Conteneur principal */
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Style des cartes */
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Titres des sections */
+h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #155724;
+}
+
+/* Boutons */
+.btn-outline-success,
+.btn-outline-warning,
+.btn-outline-danger {
+  font-size: 0.9rem;
+  padding: 0.3rem 0.6rem;
+  margin: 0 0.2rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-outline-success:hover {
+  background-color: #0e501c;
+  color: #fff;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* Badges */
+.badge-success {
+  background-color: #28a745;
+  color: white;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.5rem;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+  color: white;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.5rem;
+}
+
+/* Ajustement des icônes */
+.btn i {
+  font-size: 1.1rem;
+  margin-right: 0.3rem;
+}
+
+/* Grille des cartes */
+.row .col-md-4 {
+  display: flex;
+  justify-content: center;
+}
+
+.card.shadow-sm.h-100 {
+  width: 100%;
+  border: 1px solid #e0e0e0;
+}
+
+/* Texte de la carte */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 0.95rem;
+}
+
+/* Améliorations responsive */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+  }
+}

@@ -22,6 +22,16 @@ import { BannerNavigationComponent } from './shared/banner-navigation/banner-nav
 import { FooterComponent } from './shared/footer/footer.component';
 import {ProjetComponent} from "./agrishare/projets/Components/projet/projet.component";
 import {BrowserModule} from "@angular/platform-browser";
+import {RessourcesComponent} from "./agrishare/ressources/Components/ressources/ressources.component";
+import {
+  AddRessourceComponent
+} from "./agrishare/ressources/Components/ressources/add-ressource/add-ressource.component";
+import {
+  UpdateEquipementComponent
+} from "./agrishare/ressources/Components/ressources/update-equipement/update-equipement.component";
+import {
+  UpdateRessourceComponent
+} from "./agrishare/ressources/Components/ressources/update-ressource/update-ressource.component";
 @NgModule({
   declarations: [
     AppsComponent,
@@ -34,7 +44,11 @@ import {BrowserModule} from "@angular/platform-browser";
     BannerComponent,
     BannerNavigationComponent, // Assurez-vous que cette ligne est bien présente
     FooterComponent,
-    ProjetComponent
+    ProjetComponent,
+    RessourcesComponent,
+    AddRessourceComponent,
+    UpdateEquipementComponent,
+    UpdateRessourceComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +58,7 @@ import {BrowserModule} from "@angular/platform-browser";
     ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
+
   ],
   providers: [],
 })

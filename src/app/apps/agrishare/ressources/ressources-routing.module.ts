@@ -8,16 +8,20 @@ import {RessourcesComponent} from "./Components/ressources/ressources.component"
 const routes: Routes = [
   {
     path: '',
-    component: RessourcesComponent,
-    children: [
-
-      /*{ path: '',
-        component: BlogComponent
-      },*/
-
-
-    ]
-  }
+    component: RessourcesComponent},
+  /*{
+    path: 'ajoutRessource',
+    component: AddRessourceComponent
+  } ,{
+    path: 'ajoutEquipement',
+    component: AddEquipementComponent
+  } ,{
+    path: 'updateEquipement/:id',
+    component: UpdateEquipementComponent
+  } ,{
+    path: 'updateRessource/:id',
+    component: UpdateRessourceComponent
+  }*/
 ];
 
 @NgModule({
